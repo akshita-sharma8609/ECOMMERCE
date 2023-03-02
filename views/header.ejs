@@ -1,0 +1,32 @@
+<!-- partial for header  -->
+
+<header class="header">
+    <h2 class="greeting">WELCOME! &nbsp;</h2>
+    <div class="btn-container">
+        <a href="/cart" class="btn">CART</a>
+        <div class="dropdown">
+            <button class="dropbtn">My Account</button>
+            <div class="dropdown-content">
+              <a href="/changepassword">Change Password</a>
+
+            <% if(user_role==0) { %>
+              <a href="/addproduct">Add Product</a>
+              <a href="/uploadedproducts">Uploaded Products</a>
+          
+            <%  } else if(user_role==1) { %> 
+              <a href="/becomeSeller">Become Seller</a>
+              <% } else if(user_role==2){ %>  
+                <a href="/addproduct">Add Product</a>
+                <a href="/uploadedproducts">Uploaded Products</a>
+                <% } %>
+
+                <a href="">Track Orders</a>
+
+              <a href="/logout"  id="logout">Logout</a>
+              <!-- <a href="#">Link 3</a> -->
+            </div>
+          </div>
+        
+        <!-- <a href="/logout" class="btn" id="logout">Logout</a> -->
+    </div>
+</header>

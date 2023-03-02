@@ -1,0 +1,18 @@
+<script>
+    let form = document.getElementById('edit_products');
+    form.addEventListener('submit', function(e){
+        e.preventDefault();
+        let formData = new FormData(this);
+
+        fetch("/editproduct",{
+            method:'POST',
+            body: formData
+        }).then(res => res.json())
+        .then(function(res){
+            if(res.msg=="updatedsuccessfully"){
+                alert("Updated Successfully");
+            }
+        })
+    })
+
+</script>

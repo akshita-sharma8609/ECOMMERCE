@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/form.css">
+    <title></title>
+</head>
+
+<body>
+
+    <!-- checking for the error  -->
+    <% if(err){%>
+        <h2 class="error">
+            <%= err %>
+        </h2>
+        <%}%>
+            <center>
+
+                <div class="login_container"><br>
+
+                    <center>
+                        <h1>Forgot Password</h1>
+                    </center><br><br>
+                    <!-- signup form starts  -->
+                    <form  id="forgot_password_form">
+                        <br><br><br>
+                        <div>
+                            <label for="email">Enter Your registered Email ID:</label><br>
+                            <input type="email" name="email" id="email" class="inp_field" placeholder="email" required>
+                        </div><br>
+                        <br><br><br><br>
+
+                        <div>
+                            <input type="submit" name="submit" id="submit" value="Submit">
+                        </div><br>
+                    </form>
+                    <br><br><br>
+                    <a href="/login" id="signup">Login /</a>
+                    <a href="/signup" id="signup">SignUp</a>
+                </div>
+            </center>
+</body>
+<!-- <script src="scripts/forgotpasswordform"></script>
+ -->
+ <%- include("scripts/forgotpasswordform") %>
+</html>  

@@ -1,0 +1,49 @@
+<script>
+    //show the description of product
+    function viewdetails(id) {
+        let view = document.getElementById(`${id}`);
+        view.style.display = "none";
+
+        let ID = id.substring(1, id.length);
+        ID = parseInt(ID);
+
+        let descp = document.getElementById(`des${ID}`)
+        descp.style.display = "block"
+    }
+
+    function edit(id){
+        console.log(id)
+        let ID = id.substring(1, id.length);
+        ID = parseInt(ID);
+
+        // fetch("/editproduct", {
+        //     method:"GET",
+         
+        // }).then(function(res){
+
+        // })
+        
+        window.location.href = `http://localhost:3000/editproduct?pid=${ID}`;
+    }
+
+    function status(id){
+        // console.log(id)
+        let ID = id.substring(1, id.length);
+        ID = parseInt(ID);
+        fetch("/updateproductstatus", {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body: JSON.stringify({id:ID})
+        }).then(res=>res.json()).then(function(res){
+            if(res.msg =="updatedsuccessfully"){
+                let status_btn = document.getElementById(`${id}`);
+                if(status_btn.innerText=="Enable"){
+                    status_btn.innerText = "Disable"
+                }
+                else{
+                    status_btn.innerText = "Enable"
+                }
+            }
+        })
+    }
+</script>

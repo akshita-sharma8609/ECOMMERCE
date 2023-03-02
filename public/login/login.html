@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/form.css">
+    <title></title>
+</head>
+
+<body>
+    <center>
+        <h1>WELCOME</h1>
+        <div class="login_container"><br>
+            <center>
+                <h1>Login</h1>
+            </center><br><br><br>
+            <!-- login form start  -->
+            <form id="login_form">
+               
+                <div>
+                    <label for="email">Enter Email ID:</label><br>
+                    <input type="email" name="email" id="email" class="inp_field" placeholder="email" required>
+                </div><br>
+
+
+                <div>
+                    <label for="password">Enter Password:</label><br>
+                    <input type="password" name="password" id="password" class="inp_field" placeholder="password" required>
+                </div><br><br>
+
+                <div>
+                    <input type="submit" name="submit" id="submit" value="Submit">
+                </div><br>
+            </form>
+
+            <a href="/forgotpassword" id="signup">Forgot Password</a><br><br>
+            <a href="/signup" id="signup">SignUp</a>
+        </div>
+    </center>
+</body>
+<script src="../scripts/loginform.js"></script>
+
+</html>

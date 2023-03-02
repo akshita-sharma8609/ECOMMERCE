@@ -1,0 +1,26 @@
+<script>
+    let form = document.getElementById('admin_change_password_form');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+    
+        let formData = new FormData(this);
+     
+        fetch("/adminchangepassword", {
+            method: 'POST',
+            body: formData
+        }).then(res => res.json())
+            .then(function (res) {
+                if (res.msg == "done") {
+                    console.log("ye chl rha h")
+                    window.location.href = "http://localhost:3000/";
+                   
+                } else if (res.msg == "changepassword") {
+                    window.location.href = "http://localhost:3000/changepassword"
+    
+                } 
+            }).catch(function (err) {
+                console.log(err);
+            })
+    }) 
+    
+    </script>

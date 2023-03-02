@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/cart.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <center>
+        <h1>UPLOADED PRODUCTS</h1>
+    </center>
+    <% if(err) { %>
+        <h2>
+            <%= err %>
+        </h2>
+        <% } %>
+
+                    <% for(let i=0;i<result.length;i++) { %>
+
+                        <div class="container">
+                            <div class="card" id=div<%=result[i].productid %> >
+                                <div class="card-image">
+                                    <img src="../<%= result[i].imgId %>" alt="random value hehe" />
+                                </div>
+                                <div class="details">
+
+                                    <h1>
+                                        <%= result[i].name %>
+                                    </h1>
+                                    <h3 id=price<%= result[i].productid %> >Rs. <%= result[i].price %>/-</h3>
+                                    <h3>Quantity: <%= result[i].stock %>
+                                    </h3>
+                                    <a id=d<%= result[i].productid %> onclick="viewdetails(this.id)"
+                                        class="viewdetails" style="color:#ff6680">View Details</a>
+                                    <p id=des<%= result[i].productid %> style="display:none;"> <%= result[i].description %>
+                                    </p>
+
+                                </div>
+                                <div class="btn">
+                                    
+                                    <a id=s<%= result[i].productid %> class="button" onclick="status(this.id)"> <% if(result[i].status==0) { %> 
+                                        Enable
+                                    <% } else { %>
+                                        Disable
+                                    <% } %></a>
+                                    <a id=e<%= result[i].productid %> class="button"
+                                        onclick="edit(this.id)"> Edit </a>
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <% } %>
+</body>
+<%- include("scripts/uploadproductsscript") %>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head><meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/cart.css">
+    <title>Cart Page</title>
+   
+</head>
+
+<body>
+
+    <center><h1>CART</h1></center>
+    <center><label for="delivery_address">Address</label>
+    <input id="delivery_address" value="<%= address %>" size="100" style="height:30px; " type="text" />
+</center>
+<% let total = 0; %>
+    <% for(let i =0;i<result.length;i++) { %>
+
+        <% total+= (result[i].price*result[i].qty) %>
+        <div class="container">
+            <div class="card" id=div<%= result[i].productid %> >
+                <div class="card-image">
+                    <img src= "../<%= result[i].imgId %>" alt="random value hehe" />
+                </div>
+                        <div class="details">
+
+                            <h1><%= result[i].name %></h1>
+                            <h3 id=price<%= result[i].productid %> >Rs. <%= result[i].price %>/-</h3>
+                            <h3>Quantity: 1</h3>
+                            <a  id=d<%= result[i].productid %> onclick="viewdetails(this.id)" class="viewdetails">View Details</a>
+                            <p id=des<%= result[i].productid %> style="display:none;"> <%= result[i].description %></p>
+                            
+                        </div>
+                <div class="btn">
+                    <a id=r<%= result[i].productid %> class="button rem-btn" onclick="remove(<%= result[i].productid %>)" > Remove</a>
+
+                    <h2>Rs. <span id=total<%= result[i].productid %> > <%= (result[i].price*result[i].qty) %> </span> /-</h2>
+
+                    <h3>Quantity: <span id=q<%= result[i].productid %> > <%= result[i].qty %> </span></h3>
+
+                    <a  id=p<%= result[i].productid %> class="button" onclick="addQty(this.id, <%= result[i].personid %> , <%= result[i].price %> )"> + </a>
+                    <a  id=m<%= result[i].productid %>  class="button" onclick="minusQty(this.id, <%= result[i].personid %> , <%= result[i].price %> )"> - </a>
+                    <a  id=b<%= result[i].productid %>  class="button" onclick="buyproduct(this.id)">Buy</a>
+                </div>
+    
+                
+            </div>
+    
+        </div>
+        <% } %>
+
+<footer>
+    <div>
+        Total Bill: <span id="finalBill"> <%= total %></span>
+        <% if(total!=0) { %>
+        <a class="button" style="background-color: rgb(255 198 198); margin: 1%; " onclick="placeorder()"> PLACE ORDER</a>
+        <% } %>
+    </div>
+</footer>
+
+        <%- include ("scripts/cartscript") %>
+</body>
+
+</html>

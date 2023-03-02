@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/style.css">
+    <title>Document</title>
+</head>
+<body>
+    <center><h1>Your Order Bill</h1></center>
+    <button onclick="window.print()" class="btn" style="padding-top: 0%;">Print</button>
+<center>
+    <table border="2">
+    <tr>
+        <th>S.No.</th>
+        <th>Item</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th>Sub Total</th>
+        <th>status</th>
+    </tr>
+    <tbody>
+        <% for(let i=0;i<data.length;i++) { %>
+            <tr>
+                <td><%= i+1 %></td>
+                <td><%= data[i].name %></td>
+                <td><%= data[i].price %></td>
+                <td><%= data[i].qty %></td>
+                <td><%= data[i].price*data[i].qty %></td>
+                <td><%= data[i].status %></td>
+            </tr>
+            <% } %>
+
+            <tr >
+                <td colspan="4">Total</td> 
+            <td colspan="1"><%= total_bill %></td></tr>
+          
+    </tbody>
+    </table>
+
+    <h3>Order: <%= order_date %></h3>
+</center>
+</body>
+</html>

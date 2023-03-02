@@ -1,0 +1,206 @@
+<script>
+    //show the description of product
+    function viewdetails(id) {
+        let view = document.getElementById(`${id}`);
+        view.style.display = "none";
+
+        let ID = id.substring(1, id.length);
+        ID = parseInt(ID);
+
+        let descp = document.getElementById(`des${ID}`)
+        descp.style.display = "block"
+    }
+
+    //add the quantity in DB and show the incremental quantity on UI
+    function addQty(id, person_id, one_item_price) {
+        let bill_span = document.getElementById('finalBill');
+        let bill = bill_span.innerText;
+        bill = parseInt(bill);
+
+        let add_btn = document.getElementById(`${id}`);
+
+        let product_id = id.substring(1, id.length);
+        product_id = parseInt(product_id)
+
+        let span = document.getElementById(`q${product_id}`);
+
+        let qty = span.innerText;
+        qty = parseInt(qty);
+        qty += 1;
+        span.innerText = qty;
+        bill += one_item_price;
+        bill_span.innerText = `${bill}`;
+        display_total_price(product_id, one_item_price, qty);
+
+
+        let obj = {
+            person_id: person_id,
+            product_id: product_id,
+            quantity: qty
+        }
+        let path = "/updateqty";
+        xml_post_request(obj, path)
+
+    }
+
+    function minusQty(id, person_id, one_item_price) {
+        let bill_span = document.getElementById('finalBill');
+        let bill = bill_span.innerText;
+        bill = parseInt(bill);
+        bill -= one_item_price;
+        bill_span.innerText = `${bill}`;
+        let product_id = id.substring(1, id.length);
+        product_id = parseInt(product_id)
+
+        let span = document.getElementById(`q${product_id}`);
+        let qty = span.innerText;
+        qty = parseInt(qty);
+        if (qty - 1 <= 0) {
+            qty = qty-1;
+            
+            display_total_price(product_id, one_item_price, qty);
+            remove(product_id);
+        }
+
+        else {
+            qty -= 1;
+            span.innerText = qty;
+
+
+            display_total_price(product_id, one_item_price, qty);
+            // let total_price = document.getElementById(`total${product_id}`);
+            // one_item_price = parseInt(one_item_price);
+            // total_price.innerText = `${one_item_price * qty}`;
+
+            let obj = {
+                person_id: person_id,
+                product_id: product_id,
+                quantity: qty
+            }
+            let path = "/updateqty";
+            xml_post_request(obj, path);
+        }
+
+    }
+
+
+    function remove(product_id) {
+
+        let product = document.getElementById(`div${product_id}`);
+        product.style.display = "none";
+
+        let finalBill = document.getElementById("finalBill");
+        let bill = finalBill.innerText;
+        bill = parseInt(bill);
+
+        let total = document.getElementById(`total${product_id}`);
+        let total_bill_of_one_item = total.innerText;
+        total_bill_of_one_item = parseInt(total_bill_of_one_item);
+
+        bill -= total_bill_of_one_item;
+        finalBill.innerText = `${bill}`;
+
+
+        let path = "/removeproduct";
+        let obj = {
+            product_id: product_id,
+        }
+
+        xml_post_request(obj, path);
+
+    }
+
+
+    function xml_post_request(obj, path) {
+
+        let xhttps = new XMLHttpRequest();
+        xhttps.open('POST', path);
+        xhttps.setRequestHeader("Content-Type", "application/json");
+
+        xhttps.send(JSON.stringify(obj));
+
+        xhttps.addEventListener("load", function(){
+            return this.response;
+        })
+    }
+
+    function display_total_price(product_id, one_item_price, qty) {
+        let total_price = document.getElementById(`total${product_id}`);
+        one_item_price = parseInt(one_item_price);
+        total_price.innerText = `${one_item_price * qty}`;
+    }
+
+
+    function buyproduct(id){
+        let address = document.getElementById('delivery_address');
+        let delivery_address = address.value;
+
+        let product_id = id.substring(1, id.length);
+        product_id = parseInt(product_id);
+
+        let obj = {
+            product_id:product_id,
+            address: delivery_address
+        }
+        // let path = "/buyitem";
+        // // xml_post_request(obj, path)
+        // let xhttps = new XMLHttpRequest();
+        // xhttps.open('POST', path);
+        // xhttps.setRequestHeader("Content-Type", "application/json");
+
+        // xhttps.send(JSON.stringify(obj));
+
+        // xhttps.addEventListener("load", function(){
+        //     if(xhttps.status!=200){
+        //         alert(xhttps.responseText);
+        //     }
+        //     else{
+        //         alert(xhttps.response);
+        //         remove(product_id);
+        //     }
+        // })
+        
+        fetch("/buyitem", {
+            method:'POST',
+            headers:{"Content-Type": "application/json"},
+            body: JSON.stringify(obj)
+        }).then(res=>res.json()).then(function(res){
+            if(!res.orderid){
+                alert("can't place order");
+            }
+            else{
+            console.log(res)
+            remove(product_id);
+            window.location.href = `http://localhost:3000/viewBill?orderid=${res.orderid}`
+            }
+        })
+        
+
+        
+    }
+
+    function placeorder(){
+        let address = document.getElementById('delivery_address');
+        let delivery_address = address.value;
+
+
+        let obj = {
+            address: delivery_address
+        }
+       
+
+        fetch("/placeorder", {
+            method:'POST',
+            headers:{"Content-Type": "application/json"},
+            body: JSON.stringify(obj)
+        }).then(res=>res.json()).then(function(res){
+            console.log(res)
+            
+            window.location.href = `http://localhost:3000/viewBill?orderid=${res.orderid}`
+        })
+        
+
+        
+
+    }
+</script>

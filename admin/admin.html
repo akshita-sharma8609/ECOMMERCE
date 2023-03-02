@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/form.css">
+    <title>Add Product</title>
+</head>
+
+<body>
+
+    <!-- form to add products in the products.txt file  -->
+    <center>
+        <h1>WELCOME ADMIN</h1>
+        <div class="login_container" style="height: 700px; width: 450px;"><br>
+
+            <center>
+                <h1>ADD PRODUCT</h1>
+            </center><br><br>
+            <form  enctype="multipart/form-data" id="admin_add_products">
+                <div>
+                    <label for="productName">Enter Product Name:</label><br>
+                    <input type="text" placeholder="product name" name="productName" id="productName" class="inp_field"
+                        required>
+                </div><br><br>
+
+                <div>
+                    <label for="price">Enter Product Price:</label><br>
+                    <input type="number" placeholder="price" name="price" id="price" class="inp_field" required>
+                </div><br><br>
+
+                <div>
+                    <label for="qty">Quantity:</label><br>
+                    <input type="number" placeholder="qty" name="qty" id="qty" class="inp_field" required>
+                </div><br><br>
+                <div>
+                    <label for="productImg">Upload Product Image:</label><br>
+                    <input type="file" name="productImg" id="productImg" class="inp_field">
+                </div><br><br>
+
+                <div>
+                    <textarea name="description" id="description" cols="35" rows="10" placeholder="Details of product"
+                        required></textarea>
+                </div><br>
+
+                <div>
+                    <input type="submit" name="submit" id="submit" value="Submit">
+                </div><br>
+            </form>
+        </div>
+    </center>
+</body>
+<script src="scripts/adminaddproducts.js"></script>
+</html>
