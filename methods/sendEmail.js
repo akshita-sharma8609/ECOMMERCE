@@ -1,7 +1,8 @@
 // sends mail on the specified mail address with the specified msg 
 
 const mailjet = require('node-mailjet').apiConnect(
-    {api_key}, {secret_key}
+  "ed4864c1bfaa9f4def636d4e34b6ef9d",
+  "d283715c82e7059aeaef312065bbd351"
   )
 
 

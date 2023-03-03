@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/cart.css">
+    <title>Document</title>
+</head>
+<body>
+    <% for(let i=0;i<result.length;i++) { %>
+        <div class="container">
+            <div class="card" id=div<%= result[i].productid %> >
+                
+                        <div class="details">
+
+                            <h1><%= new Date(result[i].orderedDate ).toLocaleDateString()
+                                %></h1>
+                            <h3>TOTAL: <%= result[i].total %></h3>
+                            <h3>ADDRESS: <%= result[i].delivery_address %></h3>
+                       
+                            
+                        </div>
+                <div class="btn">
+             
+                        <a  href="/viewBill?orderid=<%= result[i].orderid %>" id=v<%= result[i].orderid %> class="button" > View Bill </a>
+                    
+                </div>
+    
+                
+            </div>
+    
+        </div>
+        <% } %>
+</body>
+</html>

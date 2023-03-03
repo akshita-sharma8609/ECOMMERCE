@@ -22,7 +22,7 @@
         <div class="container">
             <div class="card" id=div<%= result[i].productid %> >
                 <div class="card-image">
-                    <img src= "../<%= result[i].imgId %>" alt="random value hehe" />
+                    <img src= "../<%= result[i].imgId %>" width="250px" height="70px"  alt="random value hehe" />
                 </div>
                         <div class="details">
 
@@ -40,9 +40,16 @@
 
                     <h3>Quantity: <span id=q<%= result[i].productid %> > <%= result[i].qty %> </span></h3>
 
-                    <a  id=p<%= result[i].productid %> class="button" onclick="addQty(this.id, <%= result[i].personid %> , <%= result[i].price %> )"> + </a>
+                    
+
+                    <% if(result[i].status==1 && result[i].stock>0) { %>
+                        <a  id=p<%= result[i].productid %> class="button" onclick="addQty(this.id, <%= result[i].personid %> , <%= result[i].price %> )"> + </a>
                     <a  id=m<%= result[i].productid %>  class="button" onclick="minusQty(this.id, <%= result[i].personid %> , <%= result[i].price %> )"> - </a>
                     <a  id=b<%= result[i].productid %>  class="button" onclick="buyproduct(this.id)">Buy</a>
+                    <% } else  { %>
+                        
+                        <h2 style="color:red;">Out Of Stock</h2>
+                        <% } %>
                 </div>
     
                 

@@ -64,7 +64,7 @@ const { removeProduct } = require("./controllers/cart/removeProduct");
 const { BuyItem } = require("./controllers/order/buyitem")
 const { placeorder } = require("./controllers/order/placeorder")
 const { ViewBill } = require("./controllers/order/viewbill")
-
+const {trackorder}  = require("./controllers/order/trackorder")
 
 // ------------------------------------------------------------------------------------------------
 
@@ -167,6 +167,8 @@ app.get("/pswrdmessage", (req,res)=>{
 })
 
 app.get("/viewBill", ViewBill)
+
+app.get("/trackorder", trackorder);
 
 app.get("*", (req, res) => {
   res.send("404");

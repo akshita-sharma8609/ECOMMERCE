@@ -165,13 +165,14 @@
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify(obj)
         }).then(res=>res.json()).then(function(res){
-            if(!res.orderid){
+            // console.log(res);
+            if(!res.order_id){
                 alert("can't place order");
             }
             else{
             console.log(res)
             remove(product_id);
-            window.location.href = `http://localhost:3000/viewBill?orderid=${res.orderid}`
+            window.location.href = `http://localhost:3000/viewBill?orderid=${res.order_id}`
             }
         })
         
@@ -194,9 +195,15 @@
             headers:{"Content-Type": "application/json"},
             body: JSON.stringify(obj)
         }).then(res=>res.json()).then(function(res){
+            // console.log(res)
+            if(!res.order_id){
+                alert("can't place order");
+            }
+            else{
             console.log(res)
-            
-            window.location.href = `http://localhost:3000/viewBill?orderid=${res.orderid}`
+            // remove(product_id);
+            window.location.href = `http://localhost:3000/viewBill?orderid=${res.order_id}`
+            }
         })
         
 

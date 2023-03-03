@@ -24,7 +24,7 @@
                         <div class="container">
                             <div class="card" id=div<%=result[i].productid %> >
                                 <div class="card-image">
-                                    <img src="../<%= result[i].imgId %>" alt="random value hehe" />
+                                    <img src="../<%= result[i].imgId %>" width="250px" height="70px" alt="random value hehe" />
                                 </div>
                                 <div class="details">
 
@@ -40,7 +40,7 @@
                                     </p>
 
                                 </div>
-                                <div class="btn">
+                                <div class="btn" style="margin-top: 4%;">
                                     
                                     <a id=s<%= result[i].productid %> class="button" onclick="status(this.id)"> <% if(result[i].status==0) { %> 
                                         Enable
@@ -49,6 +49,9 @@
                                     <% } %></a>
                                     <a id=e<%= result[i].productid %> class="button"
                                         onclick="edit(this.id)"> Edit </a>
+
+                                    <a id=o<%= result[i].productid %> class="button"
+                                            onclick="productorders(this.id)" style="width:200px; margin-top:5%; padding:2%;"> See All orders </a>
                                 </div>
 
 
