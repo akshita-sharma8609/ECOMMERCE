@@ -1,7 +1,7 @@
 const { BuyerloginGET, BuyerloginPOST } = require("./login");
 const { BuyerSignupGET, BuyerSignupPOST } = require("./signup");
 const { buyerVerifyMailGET } = require("./verifyemail");
-
+const {socketConnection} = require("../socket/socketConnection")
 const {
   BuyerchangePassowrdGET1,
   BuyerchangePassowrdGET2,
@@ -27,4 +27,5 @@ module.exports = {
   BuyerForgotPasswordGET,
   BuyerBecomeSeller,
   BuyerForgotPasswordPOST,
+  socketConnection
 };

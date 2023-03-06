@@ -2,6 +2,7 @@ const path = require("path");
 const db = require("../../methods/dbConnection");
 const addProduct = (req, res) => {
   let email = req.session.useremail;
+  
   // console.log("eeeeeeeeeeemail", email)
   if(!email){
     res.redirect("/adminsignup");

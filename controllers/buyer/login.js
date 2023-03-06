@@ -11,7 +11,7 @@ const BuyerloginGET = (req, res) => {
   }
 };
 
-const BuyerloginPOST = (req, res) => {
+const BuyerloginPOST = (req, res, callback) => {
   // console.log("req mein ye data aya h ", req.body);
 
   let req_email = req.body.email;
@@ -37,13 +37,18 @@ const BuyerloginPOST = (req, res) => {
         // res.render("home.ejs", {
         //   user_role: user_role,
         // });
+        
+      
         res.json({msg:"done"});
+        callback();
       }else{
         req.session.is_verified = false;
         res.json({msg:"notverified"});
+        callback();
         // res.render("notverified");
       }
       }
+
     })
     .catch(function (err) {
       // res.render("signup.ejs", {

@@ -40,6 +40,28 @@
         </div>
     </center>
 </body>
+
 <script src="../scripts/loginform.js"></script>
+<script src="socket.io/socket.io.js"></script>
+<script>
+        const socket = io();
+        socket.on("connect", () => {
+            console.log(socket.id)
+        })
+
+        // let inp = document.getElementById('inp');
+        // let send_btn = document.getElementById('submit');
+
+        // send_btn.addEventListener('click', () => {
+        //     let msg = inp.value;
+            socket.emit('message', "hello from client"); //sending messages to server
+        // })
+
+        //recieving message from server
+        socket.on('server', (msg) => {
+            console.log(msg)
+        })
+
+</script>
 
 </html>
