@@ -65,7 +65,8 @@ const { BuyItem } = require("./controllers/order/buyitem")
 const { placeorder } = require("./controllers/order/placeorder")
 const { ViewBill } = require("./controllers/order/viewbill")
 const {trackorder}  = require("./controllers/order/trackorder")
-
+const {productorders} = require("./controllers/order/productorders")
+const {updateorderstatus} = require("./controllers/order/updateorderstatus");
 // ------------------------------------------------------------------------------------------------
 
 app.set("view engine", "ejs"); //specifying the tempelate engine to be used
@@ -169,6 +170,8 @@ app.get("/pswrdmessage", (req,res)=>{
 app.get("/viewBill", ViewBill)
 
 app.get("/trackorder", trackorder);
+app.get("/productorders", productorders);
+app.post("/updateorderstatus", updateorderstatus);
 
 app.get("*", (req, res) => {
   res.send("404");

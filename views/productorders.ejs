@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/styles/cart.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+    <% for(let i =0;i<result.length;i++) { %>
+       
+            <div class="card" style="border-left: 50px solid rgb(255 137 137);" id=div<%= result[i].personid %> >
+               
+                        <div class="details" style="margin-left: 10%;">
+
+                            <h2 style="color: rgb(255 137 137);">Buyer Id: <%= result[i].personid %></h2>
+                            <h3>Ordered Date: <%= new Date(result[i].orderedDate ).toLocaleDateString()
+                                %></h3>
+                                <h3>Delivery Address: <%= result[i].delivery_address %></h3>
+                                <h3>Quantity: <%= result[i].qty
+                                    %></h3>
+                            <h3 style="color:green">Total Bill: <%= result[i].price * result[i].qty %></h3>
+                            
+                            
+                        </div>
+                <div class="btn">
+                    <h3 id="status<%= result[i].personid%>"><%= result[i].status %></h3>
+                    <input id=inp<%= result[i].personid %> type="text" style="display:none; height:30px;" size="20"value="<%= result[i].status %>"/>
+                    <button id=ubtn<%= result[i].personid %> class="button" style="display:none; margin-top:3%; padding:0%;">Update</button>
+                    <a id=r<%= result[i].personid %> class="button" onclick="editstatus(<%= result[i].orderid%>, <%= result[i].productid %>, <%= result[i].personid %>)" style="width:200px;" >Edit Status</a>
+
+                
+                 
+                </div>
+    
+                
+            </div>
+    
+       
+      
+        <% } %>
+    </div>
+</body>
+
+<%- include("scripts/productordersscript") %>
+</html>

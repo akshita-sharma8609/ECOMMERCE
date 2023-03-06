@@ -50,8 +50,8 @@
                                     <a id=e<%= result[i].productid %> class="button"
                                         onclick="edit(this.id)"> Edit </a>
 
-                                    <a id=o<%= result[i].productid %> class="button"
-                                            onclick="productorders(this.id)" style="width:200px; margin-top:5%; padding:2%;"> See All orders </a>
+                                    <a href="/productorders?productid=<%= result[i].productid %>" id=o<%= result[i].productid %> class="button"
+                                             style="width:200px; margin-top:5%; padding:2%;"> See All orders </a>
                                 </div>
 
 

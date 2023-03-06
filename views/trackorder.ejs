@@ -8,11 +8,14 @@
     <title>Document</title>
 </head>
 <body>
+    <%  if(result.length<0) { %>
+        <h1>You havn't made any orders yet!</h1>
+        <% } %>
     <% for(let i=0;i<result.length;i++) { %>
         <div class="container">
-            <div class="card" id=div<%= result[i].productid %> >
+            <div class="card" style="border-left: 50px solid rgb(255 137 137); border-right: 50px solid rgb(255 137 137);" id=div<%= result[i].productid %> >
                 
-                        <div class="details">
+                        <div class="details" style="margin-left:5%;">
 
                             <h1><%= new Date(result[i].orderedDate ).toLocaleDateString()
                                 %></h1>
@@ -23,7 +26,7 @@
                         </div>
                 <div class="btn">
              
-                        <a  href="/viewBill?orderid=<%= result[i].orderid %>" id=v<%= result[i].orderid %> class="button" > View Bill </a>
+                        <a  href="/viewBill?orderid=<%= result[i].orderid %>" id=v<%= result[i].orderid %> class="button" style="margin-top:8%; margin-left:4%;"> View Bill </a>
                     
                 </div>
     

@@ -1,0 +1,38 @@
+<script>
+    function editstatus( order_id, product_id, person_id){
+        let edit_btn = document.getElementById(`r${person_id}`);
+        edit_btn.style.display = "none";
+        let inp = document.getElementById(`inp${person_id}`);
+        let update_btn = document.getElementById(`ubtn${person_id}`);
+        inp.style.display= "block";
+        update_btn.style.display = "block";
+
+        update_btn.addEventListener("click", function(){
+            let val = inp.value;
+            let status_bar = document.getElementById(`status${person_id}`);
+            status_bar.innerText = val;
+            let obj = {
+                data:val,
+                order_id:order_id,
+                product_id:product_id
+            }
+            
+            fetch("/updateorderstatus", {
+                method:'POST',
+                headers:{"Content-Type":"application/json"},
+                body: JSON.stringify(obj)
+            }).then((res)=>res.json()).then(function(res){
+                console.log("aabbccdd")
+                if(res.msg=="success"){
+                edit_btn.style.display = "block";
+                inp.style.display= "none";
+                update_btn.style.display = "none";
+                }else{
+                    alert("can't update status. Try after sometime!");
+                }
+
+            })
+        })
+        
+    }
+</script>
