@@ -28,7 +28,6 @@ const {
   BuyerForgotPasswordPOST,
 } = require("./controllers/buyer");
 
-const {socketConnection} = require("./controllers/socket/socketConnection")
 const {
   AdminloginGET,
   AdminloginPOST,
@@ -116,7 +115,7 @@ app.get("/", (req, res) => {
 });
 
 // ------------------------------------------------Buyer--------------------------------------------
-app.route("/login").get(BuyerloginGET).post(upload.single("abc"),BuyerloginPOST,socketConnection);
+app.route("/login").get(BuyerloginGET).post(upload.single("abc"),BuyerloginPOST);
 app.route("/signup").get(BuyerSignupGET).post(upload.single("abc"),BuyerSignupPOST);
 app.get("/verifymail/:token", buyerVerifyMailGET);
 app.route("/changepassword").get(BuyerchangePassowrdGET1).post(upload.single("abc"),BuyerchangePasswordPOST);
@@ -183,6 +182,6 @@ app.get("*", (req, res) => {
 app.use(errorhandler)
 
 //---------- runs the server the server starts its running from this point
-http.listen(port, () => {
+app.listen(port, () => {
   console.log("Server Running at", port);
 });
